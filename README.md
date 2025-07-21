@@ -17,3 +17,6 @@ This repository serves as a portfolio to document my technical development and p
 ## CONTACT
 - [My Linkedin Profile](https://www.linkedin.com/in/kerim-yal%C3%A7%C4%B1n-546679232/)
 - [My TryHackMe Profile](https://tryhackme.com/p/ylcnkerim)
+
+---
+This portfolio will be updated over time.
